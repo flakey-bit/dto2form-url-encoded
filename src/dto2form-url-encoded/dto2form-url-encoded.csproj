@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<VersionSuffix Condition="'$(VersionSuffix)' == '' ">0</VersionSuffix>
+	<Version>1.0.0.$(VersionSuffix)</Version>
+    <Copyright>Copyright (C) 2018 Eddie Stanley</Copyright>
+    <AssemblyTitle>.NET Core library for generating form-url-encoded data from DTOs</AssemblyTitle>
+    <Authors>Eddie Stanley</Authors>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DebugType>portable</DebugType>
+    <AssemblyName>flakeybit.dto2form-url-encoded</AssemblyName>
+    <OutputType>Library</OutputType>
+    <PackageId>dto2form-url-encoded</PackageId>
+    <Company>Flakey Bit</Company>
+    <Description>.NET Core library for generating form-url-encoded data from DTOs</Description>
+    <PackageProjectUrl>https://github.com/flakey-bit/dto2form-url-encoded</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/flakey-bit/dto2form-url-encoded/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/flakey-bit/dto2form-url-encoded</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>form-url-encoded DTO convert POCO</PackageTags>
+    <RootNamespace>flakeybit.dto2formurlencoded</RootNamespace>
+  </PropertyGroup>
+</Project>

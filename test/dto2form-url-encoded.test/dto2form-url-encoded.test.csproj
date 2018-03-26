@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<VersionSuffix Condition="'$(VersionSuffix)' == '' ">0</VersionSuffix>
+	<Version>1.0.0.$(VersionSuffix)</Version>
+    <Copyright>Copyright (C) 2018 Eddie Stanley</Copyright>
+    <AssemblyTitle>.NET Core library for generating form-url-encoded data from DTOs (tests)</AssemblyTitle>
+    <Authors>Eddie Stanley</Authors>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DebugType>portable</DebugType>
+    <AssemblyName>flakeybit.dto2form-url-encoded.test</AssemblyName>
+    <OutputType>Library</OutputType>
+    <PackageId>dto2form-url-encoded.test</PackageId>
+    <Company>Flakey Bit</Company>
+    <Description>.NET Core library for generating form-url-encoded data from DTOs (tests)</Description>
+    <PackageProjectUrl>https://github.com/flakey-bit/dto2form-url-encoded</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/flakey-bit/dto2form-url-encoded/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/flakey-bit/dto2form-url-encoded</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>form-url-encoded DTO convert POCO</PackageTags>
+    <RootNamespace>flakeybit.dto2formurlencoded.test</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.1" />
+    <PackageReference Include="Moq" Version="4.8.2" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\dto2form-url-encoded\dto2form-url-encoded.csproj" />
+  </ItemGroup>
+</Project>

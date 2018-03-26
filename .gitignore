@@ -1,0 +1,8 @@
+**/project.lock.json
+**/bin/
+**/obj/
+TestResult.xml
+**/.DS_Store
+.vs
+*.suo
+*.user
