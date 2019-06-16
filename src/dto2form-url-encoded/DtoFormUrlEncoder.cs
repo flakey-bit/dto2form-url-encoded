@@ -54,7 +54,9 @@ namespace flakeybit.dto2formurlencoded
         }
 
         internal IEnumerable<(string Path, object Value, Type Converter)> ExplodeObjectForFormMapping(object obj) {
-            foreach (var tuple in ExplodeChildObjectForMapping(null, obj, _propertyNamer)) {
+            HashSet<object> seen = new HashSet<object>();
+            seen.Add(obj);
+            foreach (var tuple in ExplodeChildObjectForMapping(null, obj, _propertyNamer, seen)) {
                 string leafChildName;
                 if (tuple.Path.Length > 1) {
                     leafChildName = tuple.Path[0] + string.Join("", tuple.Path.Skip(1).Select(part => $"[{part}]"));
@@ -69,7 +71,8 @@ namespace flakeybit.dto2formurlencoded
         private static IEnumerable<(string[] Path, object Value, Type Converter)> ExplodeChildObjectForMapping(
             string[] path,
             object obj,
-            IPropertyNamer propertyNamer) {
+            IPropertyNamer propertyNamer,
+            HashSet<object> seen) {
             if (obj == null) {
                 throw new ArgumentNullException();
             }
@@ -103,7 +106,13 @@ namespace flakeybit.dto2formurlencoded
                 if (val == null) {
                     yield return (propPath, null, converter);
                 } else if (val.GetType().GetTypeInfo().IsClass && val.GetType() != typeof(string)) {
-                    foreach (var tuple in ExplodeChildObjectForMapping(propPath, val, propertyNamer)) {
+                    if (seen.Contains(val)) {
+                        throw new ArgumentException("Object contains cycles and cannot be encoded");
+                    }
+
+                    seen.Add(val);
+
+                    foreach (var tuple in ExplodeChildObjectForMapping(propPath, val, propertyNamer, seen)) {
                         yield return (tuple.Path, tuple.Value, tuple.Converter);
                     }
                 } else {

@@ -13,7 +13,7 @@ using NUnit.Framework;
 namespace flakeybit.dto2formurlencoded.test
 {
     [TestFixture]
-    public class DtoFormUrlEncodingExtensionsFixture
+    public class DtoFormUrlEncoderTests
     {
         [SetUp]
         public void SetUp() {
@@ -130,6 +130,26 @@ namespace flakeybit.dto2formurlencoded.test
                 "SomeProperty=Foo&another_property=Bar+123&Child%5Bthe_number%5D=42&Child%5Bnested_child%5D%5Ba_value%5D=1983-11-07T00%3A00%3A00.0000000";
             var asString = GetEncodedContentAsString(result);
             Assert.That(asString, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestToFormUrlEncodedContentCyclicObjectThrows() {
+            var encoder = new DtoFormUrlEncoder();
+
+            var instance = new RecursiveDto {
+                SomeProperty = new RecursiveDto()
+            };
+
+            instance.SomeProperty.SomeProperty = instance;
+
+            Assert.That(() => {
+                encoder.ToFormUrlEncodedContent(instance);
+            }, Throws.ArgumentException.With.Message.Contains("Object contains cycles and cannot be encoded"));
+        }
+
+        private class RecursiveDto
+        {
+            public RecursiveDto SomeProperty { get; set; }
         }
     }
 }
