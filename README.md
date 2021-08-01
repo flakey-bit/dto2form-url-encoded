@@ -1,7 +1,7 @@
 # dto2form-url-encoded
 A simple library to assist with converting DTOs (data-transfer-objects) into ```FormUrlEncodedContent``` (application/x-www-form-urlencoded), suitable for ```HttpClient```. It supports arbitrary levels of nesting & allows control over how properties are named and serialized. 
 
-Although anyone sane wouldn't choose application/x-www-form-urlencoded for an API, sometimes it's unavoidable (it seems to be popular for APIs written in PHP)
+Although [anyone sane wouldn't choose application/x-www-form-urlencoded for an API](https://brandur.org/fragments/application-x-wwww-form-urlencoded), sometimes it's unavoidable (it seems to be popular for APIs written in PHP)
 
 ## Basic Usage:
 Define your DTO(s) with public properties:
